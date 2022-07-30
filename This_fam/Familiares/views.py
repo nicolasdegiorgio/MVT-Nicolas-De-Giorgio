@@ -57,20 +57,12 @@ def string_familia(request):
         listado.append(f'El familiar n° {count+1} se llama {items.nombre} {items.apellido}, y su contacto es {items.email}')
         #return listado  
     
-    datos_contexto = {'Familiares': listado}
+    datos = {'Familiares': listado}
     
-    archivo = open(r'G:\Mi unidad\Curso Python\Clase 18 - Django II\Desafio entregable\This_fam\Familiares\templates\index.html', 'r')
-    contenidohtml=archivo.read()
-    archivo.close()
+    plantilla=loader.get_template('index.html')
     
-    #crear la plantilla
-    plantilla=Template(contenidohtml)
     
-    #crear contexto
-    contexto=Context(datos_contexto)
+    documento=plantilla.render(datos)
     
-    #preparar documento para renderizar
-    documento_a_renderizar=plantilla.render(contexto)
+    return HttpResponse(documento)
     
-    #devolver la respuesta al usuario
-    return HttpResponse(documento_a_renderizar)
