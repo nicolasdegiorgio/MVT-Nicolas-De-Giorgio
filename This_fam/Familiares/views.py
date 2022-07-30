@@ -47,6 +47,25 @@ def lista_familiares(request):
 #     #return HttpResponse (listado)
    
    
+# def string_familia(request):
+    
+#     familia = listado_familiares.objects.all()
+    
+#     listado= []
+#     for count, items in enumerate(familia):
+        
+#         listado.append(f'El familiar n° {count+1} se llama {items.nombre} {items.apellido}, y su contacto es {items.email}')
+         
+    
+#     datos = {'Familiares': listado}
+    
+#     plantilla=loader.get_template('index.html')
+    
+    
+#     documento=plantilla.render(datos)
+    
+#     return HttpResponse(documento)
+    
 def string_familia(request):
     
     familia = listado_familiares.objects.all()
@@ -55,14 +74,10 @@ def string_familia(request):
     for count, items in enumerate(familia):
         
         listado.append(f'El familiar n° {count+1} se llama {items.nombre} {items.apellido}, y su contacto es {items.email}')
-        #return listado  
+         
     
     datos = {'Familiares': listado}
     
-    plantilla=loader.get_template('index.html')
     
     
-    documento=plantilla.render(datos)
-    
-    return HttpResponse(documento)
-    
+    return render(request, 'Familiares/index.html', datos)
