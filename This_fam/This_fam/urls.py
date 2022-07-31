@@ -16,10 +16,9 @@ Including another URLconf
 import string
 from django.contrib import admin
 from django.urls import path
-from Familiares.views import lista_familiares,string_familia
+from Familiares.views import string_familia  #Importao la view asociada a index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('familiares/', lista_familiares),
-    path('presentacion/', string_familia),
+    path('', string_familia), #genero el path necesario para cargr directamente el inicio
 ]
